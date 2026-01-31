@@ -106,7 +106,7 @@
         <span class="text-red-400 mr-2">● En Vivo</span> Reporte Especial de Salud & Bienestar
     </div>
 
-    <!-- ENCABEZADO (Modificado: Relative en vez de Sticky para móviles) -->
+    <!-- ENCABEZADO -->
     <header class="bg-white border-b border-slate-200 py-4 md:py-6 relative z-40 shadow-sm">
         <div class="max-w-3xl mx-auto px-4 text-center">
             <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-[10px] md:text-xs font-bold uppercase tracking-wide mb-2 md:mb-3 border border-red-200">
@@ -124,17 +124,15 @@
     <main class="flex-grow w-full max-w-[500px] md:max-w-2xl mx-auto px-4 py-4 md:py-8">
         
         <!-- CONTENEDOR DE VIDEO -->
-        <div class="bg-white p-2 rounded-2xl shadow-xl border border-slate-100 mb-8">
+        <div class="bg-white p-2 rounded-2xl shadow-xl border border-slate-100 mb-8 relative">
+            
             <div id="video-wrapper" class="relative w-full rounded-xl overflow-hidden bg-black">
                 
-                <!-- OVERLAY DE INICIO MANUAL (NUEVO) -->
-                <!-- Esto cubre el video hasta que el usuario hace clic -->
+                <!-- 1. OVERLAY DE INICIO (Visible al principio) -->
                 <div id="video-overlay" class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-40 backdrop-blur-[2px] cursor-pointer group" onclick="startVideo()">
-                    <!-- Botón Play -->
                     <div class="w-20 h-20 md:w-24 md:h-24 bg-red-600 rounded-full flex items-center justify-center shadow-lg play-pulse group-hover:scale-110 transition-transform duration-300">
                         <i class="fas fa-play text-white text-3xl md:text-4xl ml-2"></i>
                     </div>
-                    <!-- Texto llamada a la acción -->
                     <p class="mt-6 text-white font-bold text-lg md:text-xl uppercase tracking-widest drop-shadow-md animate-bounce">
                         Hacer Clic Para Ver
                     </p>
@@ -143,13 +141,17 @@
                     </p>
                 </div>
 
-                <!-- Aspect Ratio 9:16 vertical -->
+                <!-- 2. ESCUDO BLOQUEADOR (Invisible al principio, activo tras el Play) -->
+                <!-- Este div transparente bloqueará cualquier clic en el video una vez inicie -->
+                <div id="click-shield" class="absolute inset-0 z-40 hidden w-full h-full bg-transparent"></div>
+
+                <!-- 3. PLAYER DE YOUTUBE -->
                 <div class="relative pt-[177.78%] bg-black"> 
                     <div id="youtube-player" class="absolute top-0 left-0 w-full h-full"></div>
                 </div>
                 
                 <!-- Barra de Progreso -->
-                <div class="absolute bottom-0 left-0 w-full z-10">
+                <div class="absolute bottom-0 left-0 w-full z-30 pointer-events-none">
                      <div class="progress-container">
                         <div id="progress-bar" class="progress-bar"></div>
                      </div>
@@ -166,7 +168,7 @@
             </div>
         </div>
 
-        <!-- SECCIÓN DE COMENTARIOS MEJORADA -->
+        <!-- SECCIÓN DE COMENTARIOS -->
         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-6 mb-12">
             <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
                 <h3 class="font-bold text-lg text-slate-800">Comentarios Recientes</h3>
@@ -187,7 +189,6 @@
                             </div>
                             <p class="text-sm text-slate-700 leading-snug">Llevaba años luchando con mi peso y nada me funcionaba… vi este truco de la gelatina bariátrica y en una semana ya se me fue la hinchazón por completo 😳✨ ¡No puedo creer lo rápido que funciona!</p>
                             
-                            <!-- Reacciones flotantes (Visual) -->
                             <div class="absolute -bottom-2 -right-1 bg-white rounded-full shadow px-1 flex items-center gap-1 border border-slate-100 scale-75">
                                 <span class="text-blue-500 text-xs">👍</span>
                                 <span class="text-red-500 text-xs">❤️</span>
@@ -280,7 +281,7 @@
                     </div>
                 </div>
 
-                <!-- Resto de comentarios (Resumidos visualmente para no saturar) -->
+                <!-- Resto de comentarios -->
                 <div class="flex gap-3">
                     <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex-shrink-0 flex items-center justify-center font-bold text-sm border border-orange-200">AA</div>
                     <div class="flex-1">
@@ -417,6 +418,7 @@
         var offerSection = document.getElementById('offer-section');
         var progressBar = document.getElementById('progress-bar');
         var videoOverlay = document.getElementById('video-overlay');
+        var clickShield = document.getElementById('click-shield'); // El escudo
 
         function onYouTubeIframeAPIReady() {
             var savedTime = localStorage.getItem(STORAGE_KEY);
@@ -428,27 +430,34 @@
                 videoId: YOUTUBE_VIDEO_ID,
                 playerVars: {
                     'playsinline': 1,
-                    'controls': 0, 
-                    'rel': 0,
-                    'showinfo': 0,
+                    'controls': 0, // SIN CONTROLES
+                    'disablekb': 1, // SIN TECLADO
+                    'rel': 0, // SIN RELACIONADOS EXTERNOS
+                    'showinfo': 0, // SIN INFO
                     'modestbranding': 1,
-                    'iv_load_policy': 3,
+                    'fs': 0, // SIN PANTALLA COMPLETA
+                    'iv_load_policy': 3, // SIN ANOTACIONES
                     'start': Math.floor(startSeconds),
-                    'autoplay': 0 // Importante: No autoplay nativo
+                    'autoplay': 0
                 },
                 events: {
-                    // 'onReady': onPlayerReady, // Quitamos el autoplay en onReady
                     'onStateChange': onPlayerStateChange
                 }
             });
         }
 
-        // Función para iniciar el video manualmente al hacer clic en el overlay
+        // Función para iniciar el video manualmente
         window.startVideo = function() {
             if (player && player.playVideo) {
-                videoOverlay.style.display = 'none'; // Ocultar overlay
+                // 1. Ocultamos el botón de play
+                videoOverlay.style.display = 'none'; 
+                
+                // 2. ACTIVAMOS EL ESCUDO: Esto bloquea cualquier clic futuro en el video
+                clickShield.classList.remove('hidden'); 
+                
+                // 3. Iniciamos el video
                 player.playVideo();
-                player.unMute(); // Activar sonido
+                player.unMute(); 
                 startTimerLoop();
             }
         }
@@ -456,9 +465,8 @@
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.ENDED) {
                 if (!offerRevealed) revealOffer();
+                // Opcional: Si acaba, quitamos el escudo por si quieren ver relacionados (o no, para forzar venta)
             }
-            // Si el usuario pausa, volvemos a mostrar el botón de play opcionalmente, 
-            // pero para VSL es mejor dejarlo quieto o reanudar.
         }
 
         function startTimerLoop() {
