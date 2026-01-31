@@ -87,36 +87,62 @@
             animation: shine 3s infinite;
         }
         @keyframes shine { 100% { left: 100%; } }
+
+        /* Animación Play Button Overlay */
+        .play-pulse {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(220, 38, 38, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
     </style>
 </head>
 <body class="antialiased text-slate-800 flex flex-col min-h-screen">
 
     <!-- BARRA SUPERIOR TIPO "NOTICIA" -->
-    <div class="bg-slate-900 text-white text-xs py-2 text-center tracking-wider font-semibold uppercase">
+    <div class="bg-slate-900 text-white text-[10px] md:text-xs py-2 text-center tracking-wider font-semibold uppercase">
         <span class="text-red-400 mr-2">● En Vivo</span> Reporte Especial de Salud & Bienestar
     </div>
 
-    <!-- ENCABEZADO -->
-    <header class="bg-white border-b border-slate-200 py-6 sticky top-0 z-40 shadow-sm">
+    <!-- ENCABEZADO (Modificado: Relative en vez de Sticky para móviles) -->
+    <header class="bg-white border-b border-slate-200 py-4 md:py-6 relative z-40 shadow-sm">
         <div class="max-w-3xl mx-auto px-4 text-center">
-            <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-xs font-bold uppercase tracking-wide mb-3 border border-red-200">
+            <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-[10px] md:text-xs font-bold uppercase tracking-wide mb-2 md:mb-3 border border-red-200">
                 ⚠️ Atención: Protocolo Revelado
             </span>
-            <h1 class="text-2xl md:text-4xl font-black text-slate-900 leading-tight mb-2">
+            <h1 class="text-xl md:text-4xl font-black text-slate-900 leading-tight mb-2">
                 El "Truco de la Gelatina"
             </h1>
-            <p class="text-sm md:text-base text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto">
-                <span class="font-bold text-red-600">URGENTE:</span> Nunca uses este método a menos que quieras perder peso muchísimo más rápido de lo normal.
+            <p class="text-xs md:text-base text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto px-2">
+                <span class="font-bold text-red-600">URGENTE:</span> Nunca uses este método a menos que quieras perder peso muchísimo más rápido.
             </p>
         </div>
     </header>
 
-    <main class="flex-grow w-full max-w-[500px] md:max-w-2xl mx-auto px-4 py-8">
+    <main class="flex-grow w-full max-w-[500px] md:max-w-2xl mx-auto px-4 py-4 md:py-8">
         
         <!-- CONTENEDOR DE VIDEO -->
-        <!-- Diseño limpio con sombra suave para resaltar el contenido -->
         <div class="bg-white p-2 rounded-2xl shadow-xl border border-slate-100 mb-8">
             <div id="video-wrapper" class="relative w-full rounded-xl overflow-hidden bg-black">
+                
+                <!-- OVERLAY DE INICIO MANUAL (NUEVO) -->
+                <!-- Esto cubre el video hasta que el usuario hace clic -->
+                <div id="video-overlay" class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-40 backdrop-blur-[2px] cursor-pointer group" onclick="startVideo()">
+                    <!-- Botón Play -->
+                    <div class="w-20 h-20 md:w-24 md:h-24 bg-red-600 rounded-full flex items-center justify-center shadow-lg play-pulse group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-play text-white text-3xl md:text-4xl ml-2"></i>
+                    </div>
+                    <!-- Texto llamada a la acción -->
+                    <p class="mt-6 text-white font-bold text-lg md:text-xl uppercase tracking-widest drop-shadow-md animate-bounce">
+                        Hacer Clic Para Ver
+                    </p>
+                    <p class="text-gray-200 text-xs md:text-sm mt-2 font-medium">
+                        <i class="fas fa-volume-up mr-1"></i> Sonido Activado
+                    </p>
+                </div>
+
                 <!-- Aspect Ratio 9:16 vertical -->
                 <div class="relative pt-[177.78%] bg-black"> 
                     <div id="youtube-player" class="absolute top-0 left-0 w-full h-full"></div>
@@ -135,16 +161,16 @@
                     <i class="fas fa-eye text-green-500"></i> 14,832 personas viendo ahora
                 </div>
                 <div>
-                    <i class="fas fa-volume-up"></i> Sonido Activado
+                    <i class="fas fa-shield-alt"></i> Conexión Segura
                 </div>
             </div>
         </div>
 
         <!-- SECCIÓN DE COMENTARIOS MEJORADA -->
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-12">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-6 mb-12">
             <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
                 <h3 class="font-bold text-lg text-slate-800">Comentarios Recientes</h3>
-                <span class="text-xs bg-slate-100 text-slate-500 px-2 py-1 rounded">Ordenar por: Más relevantes</span>
+                <span class="text-xs bg-slate-100 text-slate-500 px-2 py-1 rounded hidden md:inline-block">Ordenar por: Más relevantes</span>
             </div>
 
             <!-- Lista de Comentarios -->
@@ -369,13 +395,13 @@
         </div>
     </footer>
 
-    <!-- LÓGICA DEL VIDEO (INTACTA) -->
+    <!-- LÓGICA DEL VIDEO ACTUALIZADA -->
     <script>
         // --- CONFIGURACIÓN ---
         const YOUTUBE_VIDEO_ID = 'NiZdlLb0Cp8'; 
         const TARGET_TIME_SECONDS = 652; // 10:52 = 652 segundos
         const STORAGE_KEY = 'vsl_video_time_gelatina';
-        const IS_TEST_MODE = false; // true para pruebas
+        const IS_TEST_MODE = false; // true para pruebas (5 seg)
         // ---------------------
 
         const VIDEO_DURATION_EST = 1200; 
@@ -390,6 +416,7 @@
         var offerRevealed = false;
         var offerSection = document.getElementById('offer-section');
         var progressBar = document.getElementById('progress-bar');
+        var videoOverlay = document.getElementById('video-overlay');
 
         function onYouTubeIframeAPIReady() {
             var savedTime = localStorage.getItem(STORAGE_KEY);
@@ -406,25 +433,32 @@
                     'showinfo': 0,
                     'modestbranding': 1,
                     'iv_load_policy': 3,
-                    'start': Math.floor(startSeconds)
+                    'start': Math.floor(startSeconds),
+                    'autoplay': 0 // Importante: No autoplay nativo
                 },
                 events: {
-                    'onReady': onPlayerReady,
+                    // 'onReady': onPlayerReady, // Quitamos el autoplay en onReady
                     'onStateChange': onPlayerStateChange
                 }
             });
         }
 
-        function onPlayerReady(event) {
-            event.target.mute();
-            event.target.playVideo();
-            startTimerLoop();
+        // Función para iniciar el video manualmente al hacer clic en el overlay
+        window.startVideo = function() {
+            if (player && player.playVideo) {
+                videoOverlay.style.display = 'none'; // Ocultar overlay
+                player.playVideo();
+                player.unMute(); // Activar sonido
+                startTimerLoop();
+            }
         }
 
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.ENDED) {
                 if (!offerRevealed) revealOffer();
             }
+            // Si el usuario pausa, volvemos a mostrar el botón de play opcionalmente, 
+            // pero para VSL es mejor dejarlo quieto o reanudar.
         }
 
         function startTimerLoop() {
