@@ -90,6 +90,9 @@
         }
 
         video { object-fit: cover; }
+        
+        /* Ajuste suave de scroll */
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body class="antialiased text-slate-800 flex flex-col min-h-screen">
@@ -100,24 +103,25 @@
     </div>
 
     <!-- ENCABEZADO -->
-    <header class="bg-white border-b border-slate-200 py-4 md:py-6 relative z-40 shadow-sm">
+    <header class="bg-white border-b border-slate-200 py-2 md:py-6 relative z-40 shadow-sm">
         <div class="max-w-3xl mx-auto px-4 text-center">
-            <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-[10px] md:text-xs font-bold uppercase tracking-wide mb-2 md:mb-3 border border-red-200">
+            <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-[9px] md:text-xs font-bold uppercase tracking-wide mb-1 md:mb-3 border border-red-200">
                 ⚠️ Atención: Protocolo Revelado
             </span>
-            <h1 class="text-xl md:text-4xl font-black text-slate-900 leading-tight mb-2">
+            <h1 class="text-lg md:text-4xl font-black text-slate-900 leading-tight mb-1 md:mb-2">
                 El "Truco de la Gelatina"
             </h1>
-            <p class="text-xs md:text-base text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto px-2">
+            <p class="text-[11px] md:text-base text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto px-2">
                 <span class="font-bold text-red-600">URGENTE:</span> Nunca uses este método a menos que quieras perder peso muchísimo más rápido.
             </p>
         </div>
     </header>
 
-    <main class="flex-grow w-full max-w-[500px] md:max-w-2xl mx-auto px-4 py-4 md:py-8">
+    <main class="flex-grow w-full max-w-[500px] md:max-w-2xl mx-auto px-4 py-2 md:py-8">
         
         <!-- CONTENEDOR DE VIDEO -->
-        <div class="bg-white p-2 rounded-2xl shadow-xl border border-slate-100 mb-8 relative">
+        <!-- Añadido id="main-video-container" para el auto-enfoque -->
+        <div id="main-video-container" class="bg-white p-2 rounded-2xl shadow-xl border border-slate-100 mb-8 relative scroll-mt-2">
             
             <div id="video-wrapper" class="relative w-full rounded-xl overflow-hidden bg-black">
                 
@@ -134,13 +138,11 @@
                     </p>
                 </div>
 
-                <!-- 2. ESCUDO BLOQUEADOR (Seguridad VSL) -->
-                <!-- Bloquea clic derecho y acceso a controles -->
+                <!-- 2. ESCUDO BLOQUEADOR -->
                 <div id="click-shield" class="absolute inset-0 z-40 hidden w-full h-full bg-transparent" oncontextmenu="return false;"></div>
 
                 <!-- 3. PLAYER HTML5 -->
                 <div class="relative pt-[177.78%] bg-black"> 
-                    <!-- El archivo DEBE llamarse 'video.mp4' en tu carpeta -->
                     <video 
                         id="my-video" 
                         class="absolute top-0 left-0 w-full h-full"
@@ -358,7 +360,8 @@
     <!-- LÓGICA -->
     <script>
         // --- CONFIGURACIÓN ---
-        const TARGET_TIME_SECONDS = 652; // 10:52 = 652 segundos
+        const TARGET_TIME_SECONDS = 615; // 10:15 = 615 segundos
+        const VIDEO_DURATION_EST = 615; // Ajustado a la duración real
         const STORAGE_KEY = 'vsl_video_time_gelatina';
         const IS_TEST_MODE = false; // true para pruebas (5 seg)
         // ---------------------
@@ -369,6 +372,7 @@
         var progressBar = document.getElementById('progress-bar');
         var videoOverlay = document.getElementById('video-overlay');
         var clickShield = document.getElementById('click-shield');
+        var mainContainer = document.getElementById('main-video-container'); // Contenedor para scroll
         var interval;
 
         // Recuperar tiempo guardado
@@ -385,16 +389,23 @@
                 // 1. Ocultar overlay de play
                 videoOverlay.style.display = 'none'; 
                 
-                // 2. ACTIVAR EL ESCUDO DE CLICS (Bloquea todo)
+                // 2. ACTIVAR EL ESCUDO DE CLICS
                 clickShield.classList.remove('hidden'); 
                 
-                // 3. Play y Sonido
+                // 3. AUTO-AJUSTE / SCROLL SUAVE (La magia)
+                // Esperamos 100ms para asegurar que el navegador ha procesado el clic
+                setTimeout(() => {
+                    if(mainContainer) {
+                        mainContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 100);
+                
+                // 4. Play y Sonido
                 video.play().then(() => {
-                    video.muted = false; // Asegurar sonido
+                    video.muted = false; 
                     video.volume = 1.0;
                 }).catch(err => {
                     console.log("Error al reproducir: ", err);
-                    // Si falla el audio automático, reproducir silenciado
                     video.muted = true;
                     video.play();
                 });
@@ -415,14 +426,12 @@
             interval = setInterval(() => {
                 if(video && !video.paused) {
                     var currentTime = video.currentTime;
-                    var duration = video.duration || 1200; // Fallback si no carga metadata
+                    var duration = video.duration || VIDEO_DURATION_EST; 
 
-                    // Guardar progreso
                     if (currentTime > 5 && !IS_TEST_MODE) {
                         localStorage.setItem(STORAGE_KEY, currentTime);
                     }
 
-                    // Revelar Oferta
                     if (!offerRevealed) {
                         let triggerTime = IS_TEST_MODE ? 5 : TARGET_TIME_SECONDS;
                         if (currentTime >= triggerTime) {
@@ -430,7 +439,6 @@
                         }
                     }
 
-                    // Barra de progreso visual
                     if (duration > 0) {
                         const ratio = currentTime / duration;
                         let visualPercentage = Math.pow(ratio, 0.7) * 100;
