@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="facebook-domain-verification" content="h2b8452zwodcytv8k5e8wylkgh0jxo" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Truco de la Gelatina | Reporte de Salud</title>
+    
+    <!-- === OPTIMIZACIÓN DE VELOCIDAD Y FUENTES === -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.youtube.com">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fuentes: Merriweather (Autoridad) e Inter (Legibilidad) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@300;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- === SCRIPTS DE SEGUIMIENTO (TRACKING) === -->
+
+    <!-- MICROSOFT CLARITY -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "v3d5w8cdgz");
+    </script>
+    <!-- FIN CLARITY -->
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '877668058316839');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=877668058316839&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- UTMify Script -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+    <!-- End UTMify Script -->
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        h1, h2, h3 { font-family: 'Merriweather', serif; }
+        
+        .progress-container {
+            width: 100%; height: 6px; background-color: rgba(255,255,255,0.2);
+            position: relative; overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%; background: #ef4444; width: 0%; 
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+        }
+
+        .fb-comment-bg { background-color: #f0f2f5; border-radius: 18px; }
+        .fade-in { animation: fadeIn 0.8s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Efecto de brillo en el botón */
+        .btn-shine {
+            position: relative; overflow: hidden;
+        }
+        .btn-shine::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine { 100% { left: 100%; } }
+    </style>
+</head>
+<body class="antialiased text-slate-800 flex flex-col min-h-screen">
+
+    <!-- BARRA SUPERIOR TIPO "NOTICIA" -->
+    <div class="bg-slate-900 text-white text-xs py-2 text-center tracking-wider font-semibold uppercase">
+        <span class="text-red-400 mr-2">● En Vivo</span> Reporte Especial de Salud & Bienestar
+    </div>
+
+    <!-- ENCABEZADO -->
+    <header class="bg-white border-b border-slate-200 py-6 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-red-100 text-red-700 text-xs font-bold uppercase tracking-wide mb-3 border border-red-200">
+                ⚠️ Atención: Protocolo Revelado
+            </span>
+            <h1 class="text-2xl md:text-4xl font-black text-slate-900 leading-tight mb-2">
+                El "Truco de la Gelatina"
+            </h1>
+            <p class="text-sm md:text-base text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto">
+                <span class="font-bold text-red-600">URGENTE:</span> Nunca uses este método a menos que quieras perder peso muchísimo más rápido de lo normal.
+            </p>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full max-w-[500px] md:max-w-2xl mx-auto px-4 py-8">
+        
+        <!-- CONTENEDOR DE VIDEO -->
+        <!-- Diseño limpio con sombra suave para resaltar el contenido -->
+        <div class="bg-white p-2 rounded-2xl shadow-xl border border-slate-100 mb-8">
+            <div id="video-wrapper" class="relative w-full rounded-xl overflow-hidden bg-black">
+                <!-- Aspect Ratio 9:16 vertical -->
+                <div class="relative pt-[177.78%] bg-black"> 
+                    <div id="youtube-player" class="absolute top-0 left-0 w-full h-full"></div>
+                </div>
+                
+                <!-- Barra de Progreso -->
+                <div class="absolute bottom-0 left-0 w-full z-10">
+                     <div class="progress-container">
+                        <div id="progress-bar" class="progress-bar"></div>
+                     </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center justify-between px-2 mt-3 text-xs text-gray-400 font-medium">
+                <div class="flex items-center gap-1">
+                    <i class="fas fa-eye text-green-500"></i> 14,832 personas viendo ahora
+                </div>
+                <div>
+                    <i class="fas fa-volume-up"></i> Sonido Activado
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN DE COMENTARIOS MEJORADA -->
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-12">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                <h3 class="font-bold text-lg text-slate-800">Comentarios Recientes</h3>
+                <span class="text-xs bg-slate-100 text-slate-500 px-2 py-1 rounded">Ordenar por: Más relevantes</span>
+            </div>
+
+            <!-- Lista de Comentarios -->
+            <div class="space-y-6">
+                
+                <!-- Comentario 1 -->
+                <div class="flex gap-3">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex-shrink-0 flex items-center justify-center font-bold text-sm border border-blue-200">MR</div>
+                    <div class="flex-1">
+                        <div class="fb-comment-bg px-4 py-3 inline-block relative">
+                            <div class="flex items-center gap-1 mb-1">
+                                <span class="font-bold text-sm text-slate-900">Marina Rodríguez</span>
+                                <i class="fas fa-check-circle text-blue-500 text-[10px]" title="Compra Verificada"></i>
+                            </div>
+                            <p class="text-sm text-slate-700 leading-snug">Llevaba años luchando con mi peso y nada me funcionaba… vi este truco de la gelatina bariátrica y en una semana ya se me fue la hinchazón por completo 😳✨ ¡No puedo creer lo rápido que funciona!</p>
+                            
+                            <!-- Reacciones flotantes (Visual) -->
+                            <div class="absolute -bottom-2 -right-1 bg-white rounded-full shadow px-1 flex items-center gap-1 border border-slate-100 scale-75">
+                                <span class="text-blue-500 text-xs">👍</span>
+                                <span class="text-red-500 text-xs">❤️</span>
+                                <span class="text-[10px] text-gray-500 font-bold ml-1">38</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs text-slate-500 mt-1 ml-2 font-medium">
+                            <span class="cursor-pointer hover:underline">Me gusta</span>
+                            <span class="cursor-pointer hover:underline">Responder</span>
+                            <span>Hace 23 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comentario 2 -->
+                <div class="flex gap-3">
+                    <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex-shrink-0 flex items-center justify-center font-bold text-sm border border-pink-200">LM</div>
+                    <div class="flex-1">
+                        <div class="fb-comment-bg px-4 py-3 inline-block relative">
+                            <div class="flex items-center gap-1 mb-1">
+                                <span class="font-bold text-sm text-slate-900">Laura Morales</span>
+                            </div>
+                            <p class="text-sm text-slate-700 leading-snug">Al principio pensé que era otra estafa más 😅 pero igual decidí probar… hoy es mi tercer día y mi barriga ya se ve mucho menos inflamada. Hasta duermo mejor 🥰 ¡Muy bueno!</p>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs text-slate-500 mt-1 ml-2 font-medium">
+                            <span class="cursor-pointer hover:underline">Me gusta</span>
+                            <span class="cursor-pointer hover:underline">Responder</span>
+                            <span>Hace 12 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comentario 3 -->
+                <div class="flex gap-3">
+                    <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex-shrink-0 flex items-center justify-center font-bold text-sm border border-green-200">CH</div>
+                    <div class="flex-1">
+                        <div class="fb-comment-bg px-4 py-3 inline-block relative">
+                            <div class="flex items-center gap-1 mb-1">
+                                <span class="font-bold text-sm text-slate-900">Carla Hernández</span>
+                                <i class="fas fa-check-circle text-blue-500 text-[10px]" title="Compra Verificada"></i>
+                            </div>
+                            <p class="text-sm text-slate-700 leading-snug">Chicas, llevo probando el truco desde el lunes y ya siento mi abdomen súper desinflamado 😍🔥 No pensé que algo tan simple funcionara así.</p>
+                             <div class="absolute -bottom-2 -right-1 bg-white rounded-full shadow px-1 flex items-center gap-1 border border-slate-100 scale-75">
+                                <span class="text-red-500 text-xs">❤️</span>
+                                <span class="text-[10px] text-gray-500 font-bold ml-1">59</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs text-slate-500 mt-1 ml-2 font-medium">
+                            <span class="cursor-pointer hover:underline">Me gusta</span>
+                            <span class="cursor-pointer hover:underline">Responder</span>
+                            <span>Hace 14 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comentario 4 -->
+                <div class="flex gap-3 opacity-75">
+                    <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex-shrink-0 flex items-center justify-center font-bold text-sm border border-gray-300">DR</div>
+                    <div class="flex-1">
+                        <div class="fb-comment-bg px-4 py-3 inline-block">
+                            <div class="flex items-center gap-1 mb-1">
+                                <span class="font-bold text-sm text-slate-900">Daniela Ramírez</span>
+                            </div>
+                            <p class="text-sm text-slate-700 leading-snug">No sé… me suena a lo mismo de siempre 😒 pura publicidad, seguro no funciona y después ni responden los mensajes.</p>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs text-slate-500 mt-1 ml-2 font-medium">
+                            <span class="cursor-pointer hover:underline">Me gusta</span>
+                            <span class="cursor-pointer hover:underline">Responder</span>
+                            <span>Hace 14 min</span>
+                        </div>
+                    </div>
+                </div>
+                
+                 <!-- Respuesta a Comentario 4 -->
+                <div class="flex gap-3 ml-12 border-l-2 border-slate-100 pl-3">
+                    <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex-shrink-0 flex items-center justify-center font-bold text-xs border border-purple-200">CL</div>
+                    <div class="flex-1">
+                        <div class="fb-comment-bg px-3 py-2 inline-block relative bg-purple-50">
+                            <div class="flex items-center gap-1 mb-1">
+                                <span class="font-bold text-sm text-slate-900">Carolina López</span>
+                                <i class="fas fa-reply text-gray-400 text-[10px]"></i>
+                            </div>
+                            <p class="text-sm text-slate-700 leading-snug">Yo pensaba igual 😅 pero lo probé porque ya no sabía qué hacer con mi ansiedad y el peso. Hoy es el sexto día y ya bajé 3,7 kg 😭💚 duermo mejor, no me siento hinchada… de verdad me sorprendió.</p>
+                        </div>
+                         <div class="flex items-center gap-4 text-xs text-slate-500 mt-1 ml-2 font-medium">
+                            <span class="cursor-pointer hover:underline">Me gusta</span>
+                            <span class="cursor-pointer hover:underline">Responder</span>
+                            <span>Hace 8 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resto de comentarios (Resumidos visualmente para no saturar) -->
+                <div class="flex gap-3">
+                    <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex-shrink-0 flex items-center justify-center font-bold text-sm border border-orange-200">AA</div>
+                    <div class="flex-1">
+                        <div class="fb-comment-bg px-4 py-3 inline-block">
+                            <span class="font-bold text-sm text-slate-900 block mb-1">Antonela Alderete</span>
+                            <p class="text-sm text-slate-700 leading-snug">¡Muy bueno! Luché años con mi peso, gasté mucho en dietas y nada funcionaba. Después encontré este truco casero con gelatina… en pocos días sentí mi cuerpo más liviano. ¡Gracias! ❤️‍🔥💖</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="flex gap-3">
+                    <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-600 flex-shrink-0 flex items-center justify-center font-bold text-sm border border-teal-200">JC</div>
+                    <div class="flex-1">
+                        <div class="fb-comment-bg px-4 py-3 inline-block relative">
+                             <div class="flex items-center gap-1 mb-1">
+                                <span class="font-bold text-sm text-slate-900">José Carlos Coronado</span>
+                                <i class="fas fa-check-circle text-blue-500 text-[10px]" title="Compra Verificada"></i>
+                            </div>
+                            <p class="text-sm text-slate-700 leading-snug">¡Increíble! Empecé a usar el truco hace 10 días y ya bajé 3,1 kg sin pasar hambre. ¡Funciona de verdad! 👏🔥</p>
+                            <div class="absolute -bottom-2 -right-1 bg-white rounded-full shadow px-1 flex items-center gap-1 border border-slate-100 scale-75">
+                                <span class="text-blue-500 text-xs">👍</span>
+                                <span class="text-[10px] text-gray-500 font-bold ml-1">59</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <button class="w-full mt-6 py-2 text-sm text-slate-500 font-medium border border-slate-200 rounded-lg hover:bg-slate-50 transition">
+                Cargar más comentarios...
+            </button>
+        </div>
+
+        <!-- SECCIÓN DE OFERTA (Oculta al inicio) -->
+        <div id="offer-section" class="hidden fade-in text-center pb-12">
+            <div class="bg-gradient-to-b from-white to-red-50 border border-red-100 rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+                
+                <!-- Badge Flotante -->
+                <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
+                    Oferta Exclusiva
+                </div>
+
+                <h2 class="text-2xl md:text-3xl font-black text-slate-900 mb-2 font-serif">
+                    ¿Lista para Transformar tu Cuerpo?
+                </h2>
+                <p class="mb-8 text-slate-600 text-lg">
+                    Accede al protocolo completo hoy mismo y activa tu metabolismo.
+                </p>
+
+                <a href="TU_ENLACE_DE_PAGO_AQUI" class="btn-shine block w-full max-w-md mx-auto bg-green-500 hover:bg-green-600 text-white font-black text-xl md:text-2xl py-5 rounded-xl shadow-lg transform transition hover:scale-[1.02] active:scale-95 mb-4 group">
+                    QUIERO ACCESO INMEDIATO 
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+
+                <!-- Sellos de confianza -->
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-xs text-slate-500 mt-6 opacity-80">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-lock text-green-600"></i> Pago 100% Seguro
+                    </div>
+                    <div class="hidden md:block">|</div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-shield-alt text-blue-600"></i> Garantía de Satisfacción
+                    </div>
+                    <div class="hidden md:block">|</div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-bolt text-yellow-500"></i> Acceso Inmediato
+                    </div>
+                </div>
+                
+                <div class="mt-4 pt-4 border-t border-red-100 flex justify-center gap-3 opacity-60 grayscale hover:grayscale-0 transition">
+                    <i class="fab fa-cc-visa text-2xl"></i>
+                    <i class="fab fa-cc-mastercard text-2xl"></i>
+                    <i class="fab fa-cc-amex text-2xl"></i>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER LEGAL -->
+    <footer class="bg-slate-50 py-12 border-t border-slate-200 mt-auto text-center">
+        <div class="max-w-4xl mx-auto px-6 space-y-8">
+            
+            <div class="flex justify-center items-center gap-2 mb-4">
+               <div class="h-px w-10 bg-slate-300"></div>
+               <span class="text-slate-400 text-xs font-semibold uppercase tracking-widest">Información Legal</span>
+               <div class="h-px w-10 bg-slate-300"></div>
+            </div>
+
+            <div class="text-[10px] text-slate-400 space-y-4 text-justify md:text-center leading-relaxed font-light">
+                <p>
+                    <strong>DESCARGO DE RESPONSABILIDAD:</strong> Los resultados pueden variar de una persona a otra. Todos los testimonios presentados en este video son reales, pero no garantizan que usted obtendrá exactamente los mismos resultados. El éxito de este método depende de su dedicación, del organismo de cada individuo y de otros factores.
+                </p>
+                <p>
+                    <strong>AVISO MÉDICO:</strong> Este producto no sustituye el consejo médico profesional. Siempre consulte a un médico antes de comenzar cualquier programa de ejercicios o nutrición. El contenido de este sitio web tiene fines únicamente informativos y educativos.
+                </p>
+                <p>
+                    Este sitio no está afiliado a Facebook ni a ninguna entidad de Facebook. Una vez que salgas de Facebook o Instagram, la responsabilidad recae únicamente sobre este sitio. © 2025 – Todos los derechos reservados.
+                </p>
+            </div>
+            
+            <div class="flex justify-center gap-6 text-xs text-slate-500 font-medium">
+                <a href="#" class="hover:text-slate-800 transition">Política de Privacidad</a>
+                <a href="#" class="hover:text-slate-800 transition">Términos y Condiciones</a>
+                <a href="#" class="hover:text-slate-800 transition">Contacto</a>
+            </div>
+            
+            <p class="text-[10px] text-slate-300 mt-8">
+                Copyright © 2025 - Truco de la Gelatina.
+            </p>
+        </div>
+    </footer>
+
+    <!-- LÓGICA DEL VIDEO (INTACTA) -->
+    <script>
+        // --- CONFIGURACIÓN ---
+        const YOUTUBE_VIDEO_ID = 'NiZdlLb0Cp8'; 
+        const TARGET_TIME_SECONDS = 652; // 10:52 = 652 segundos
+        const STORAGE_KEY = 'vsl_video_time_gelatina';
+        const IS_TEST_MODE = false; // true para pruebas
+        // ---------------------
+
+        const VIDEO_DURATION_EST = 1200; 
+
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        var interval;
+        var offerRevealed = false;
+        var offerSection = document.getElementById('offer-section');
+        var progressBar = document.getElementById('progress-bar');
+
+        function onYouTubeIframeAPIReady() {
+            var savedTime = localStorage.getItem(STORAGE_KEY);
+            var startSeconds = savedTime ? parseFloat(savedTime) : 0;
+
+            player = new YT.Player('youtube-player', {
+                height: '100%',
+                width: '100%',
+                videoId: YOUTUBE_VIDEO_ID,
+                playerVars: {
+                    'playsinline': 1,
+                    'controls': 0, 
+                    'rel': 0,
+                    'showinfo': 0,
+                    'modestbranding': 1,
+                    'iv_load_policy': 3,
+                    'start': Math.floor(startSeconds)
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.mute();
+            event.target.playVideo();
+            startTimerLoop();
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                if (!offerRevealed) revealOffer();
+            }
+        }
+
+        function startTimerLoop() {
+            if (interval) clearInterval(interval);
+
+            interval = setInterval(() => {
+                if(player && player.getCurrentTime) {
+                    var currentTime = player.getCurrentTime();
+                    var duration = player.getDuration() || VIDEO_DURATION_EST;
+
+                    if (currentTime > 5 && !IS_TEST_MODE) {
+                        localStorage.setItem(STORAGE_KEY, currentTime);
+                    }
+
+                    if (!offerRevealed) {
+                        let triggerTime = IS_TEST_MODE ? 5 : TARGET_TIME_SECONDS;
+                        if (currentTime >= triggerTime) {
+                            revealOffer();
+                        }
+                    }
+
+                    if (duration > 0) {
+                        const ratio = currentTime / duration;
+                        let visualPercentage = Math.pow(ratio, 0.7) * 100;
+                        if (visualPercentage > 98 && (player.getPlayerState() !== YT.PlayerState.ENDED)) {
+                            visualPercentage = 98 + (ratio * 0.2); 
+                        }
+                        progressBar.style.width = `${visualPercentage}%`;
+                    }
+                }
+            }, 500); 
+        }
+
+        window.revealOffer = function() {
+            offerRevealed = true;
+            offerSection.style.display = 'block';
+            setTimeout(() => {
+                offerSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        }
+    </script>
+</body>
+</html>
