@@ -19,7 +19,7 @@
     <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- === TUS SCRIPTS DE TRACKING (INTACTOS) === -->
+    <!-- === TUS SCRIPTS DE TRACKING === -->
     <!-- MICROSOFT CLARITY -->
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
@@ -40,7 +40,7 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '877668058316839');
-    fbq('track', 'PageView');
+    fbq('track', 'PageView'); 
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=877668058316839&ev=PageView&noscript=1"
@@ -64,7 +64,7 @@
         }
         .progress-bar {
             height: 100%; background: #ef4444; width: 0%; 
-            transition: width 0.1s linear; /* Transición más suave para update continuo */
+            transition: width 0.1s linear; 
             box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
         }
 
@@ -90,8 +90,6 @@
         }
 
         video { object-fit: cover; }
-        
-        /* Ajuste suave de scroll */
         html { scroll-behavior: smooth; }
     </style>
 </head>
@@ -114,9 +112,8 @@
             <p class="text-[11px] md:text-base text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto px-2 mb-2">
                 <span class="font-bold text-red-600">URGENTE:</span> Nunca uses este método a menos que quieras perder peso muchísimo más rápido.
             </p>
-            <!-- AVISO DE TIEMPO (NUEVO) -->
             <div class="text-xs font-semibold text-blue-600 bg-blue-50 inline-block px-3 py-1 rounded-full border border-blue-100">
-                ⏳ Mira el video hasta el final
+                ⏳ El método se revela en el minuto 10:00
             </div>
         </div>
     </header>
@@ -128,7 +125,7 @@
             
             <div id="video-wrapper" class="relative w-full rounded-xl overflow-hidden bg-black">
                 
-                <!-- 1. OVERLAY DE INICIO -->
+                <!-- OVERLAY DE INICIO -->
                 <div id="video-overlay" class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-40 backdrop-blur-[2px] cursor-pointer group" onclick="startVideo()">
                     <div class="w-20 h-20 md:w-24 md:h-24 bg-red-600 rounded-full flex items-center justify-center shadow-lg play-pulse group-hover:scale-110 transition-transform duration-300">
                         <i class="fas fa-play text-white text-3xl md:text-4xl ml-2"></i>
@@ -141,10 +138,10 @@
                     </p>
                 </div>
 
-                <!-- 2. ESCUDO BLOQUEADOR -->
+                <!-- ESCUDO BLOQUEADOR -->
                 <div id="click-shield" class="absolute inset-0 z-40 hidden w-full h-full bg-transparent" oncontextmenu="return false;"></div>
 
-                <!-- 3. PLAYER HTML5 -->
+                <!-- PLAYER HTML5 -->
                 <div class="relative pt-[177.78%] bg-black"> 
                     <video 
                         id="my-video" 
@@ -300,7 +297,7 @@
             </button>
         </div>
 
-        <!-- SECCIÓN DE OFERTA (ACTUALIZADA CON PRECIOS) -->
+        <!-- SECCIÓN DE OFERTA (PRECIOS ACTUALIZADOS + WIDGET HOTMART) -->
         <div id="offer-section" class="hidden fade-in text-center pb-12">
             <div class="bg-gradient-to-b from-white to-red-50 border border-red-100 rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
                 <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
@@ -328,7 +325,27 @@
                     </div>
                 </div>
 
-                <a href="https://pay.hotmart.com/W104195927D" class="btn-shine block w-full max-w-md mx-auto bg-green-500 hover:bg-green-600 text-white font-black text-xl md:text-2xl py-5 rounded-xl shadow-lg transform transition hover:scale-[1.02] active:scale-95 mb-4 group">
+                <!-- WIDGET HOTMART INTEGRADO EN BOTÓN ESTÉTICO -->
+                <!-- Script de carga del Widget -->
+                <script type="text/javascript">
+                    function importHotmart(){ 
+                        var imported = document.createElement('script'); 
+                        imported.src = 'https://static.hotmart.com/checkout/widget.min.js'; 
+                        document.head.appendChild(imported); 
+                        var link = document.createElement('link'); 
+                        link.rel = 'stylesheet'; 
+                        link.type = 'text/css'; 
+                        link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css'; 
+                        document.head.appendChild(link);    
+                    } 
+                    importHotmart(); 
+                </script> 
+
+                <!-- Botón que activa el widget pero mantiene el diseño bonito -->
+                <!-- Se añaden las clases 'hotmart-fb hotmart__button-checkout' y checkoutMode=2 -->
+                <a href="https://pay.hotmart.com/W104195927D?checkoutMode=2" 
+                   class="hotmart-fb hotmart__button-checkout btn-shine block w-full max-w-md mx-auto bg-green-500 hover:bg-green-600 text-white font-black text-xl md:text-2xl py-5 rounded-xl shadow-lg transform transition hover:scale-[1.02] active:scale-95 mb-4 group"
+                   onclick="fbq('track', 'InitiateCheckout'); return false;">
                     QUIERO ACCESO INMEDIATO 
                     <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                 </a>
@@ -380,9 +397,11 @@
     <!-- LÓGICA -->
     <script>
         // --- CONFIGURACIÓN ---
-        const TARGET_TIME_SECONDS = 600; // 10:00 = 600 segundos
+        const TARGET_TIME_SECONDS = 600; // 10 MINUTOS
         const STORAGE_KEY = 'vsl_video_time_gelatina';
-        const IS_TEST_MODE = false; // true para pruebas (5 seg)
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const IS_TEST_MODE = urlParams.has('test'); 
         // ---------------------
 
         var video = document.getElementById('my-video');
@@ -393,8 +412,8 @@
         var clickShield = document.getElementById('click-shield');
         var mainContainer = document.getElementById('main-video-container'); 
         var interval;
+        var fallbackTimer; // RELOJ DE SEGURIDAD
 
-        // Recuperar tiempo guardado
         window.onload = function() {
             var savedTime = localStorage.getItem(STORAGE_KEY);
             if (savedTime && video) {
@@ -402,23 +421,17 @@
             }
         };
 
-        // Función para iniciar el video manualmente
         window.startVideo = function() {
             if (video) {
-                // 1. Ocultar overlay de play
                 videoOverlay.style.display = 'none'; 
-                
-                // 2. ACTIVAR EL ESCUDO DE CLICS
                 clickShield.classList.remove('hidden'); 
                 
-                // 3. AUTO-AJUSTE / SCROLL SUAVE
                 setTimeout(() => {
                     if(mainContainer) {
                         mainContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
                 }, 100);
                 
-                // 4. Play y Sonido
                 video.play().then(() => {
                     video.muted = false; 
                     video.volume = 1.0;
@@ -428,9 +441,14 @@
                     video.play();
                 });
                 
-                // Añadir el listener para timeupdate (Barra de progreso REPARADA)
                 video.addEventListener('timeupdate', updateProgressBar);
                 
+                // INICIAR RELOJ DE SEGURIDAD (10 min + 5 seg de margen)
+                clearTimeout(fallbackTimer);
+                fallbackTimer = setTimeout(() => {
+                    if (!offerRevealed) revealOffer();
+                }, (TARGET_TIME_SECONDS * 1000) + 5000);
+
                 startTimerLoop();
             }
         }
@@ -441,7 +459,6 @@
             });
         }
         
-        // Nueva función específica para la barra de progreso
         function updateProgressBar() {
              if(video && video.duration) {
                 var percentage = (video.currentTime / video.duration) * 100;
@@ -452,17 +469,14 @@
         function startTimerLoop() {
             if (interval) clearInterval(interval);
 
-            // Intervalo solo para la lógica de la oferta y guardado
             interval = setInterval(() => {
                 if(video && !video.paused) {
                     var currentTime = video.currentTime;
 
-                    // Guardar progreso cada 5s
                     if (currentTime > 5 && !IS_TEST_MODE) {
                         localStorage.setItem(STORAGE_KEY, currentTime);
                     }
 
-                    // Revelar Oferta
                     if (!offerRevealed) {
                         let triggerTime = IS_TEST_MODE ? 5 : TARGET_TIME_SECONDS;
                         if (currentTime >= triggerTime) {
@@ -474,6 +488,7 @@
         }
 
         window.revealOffer = function() {
+            if (offerRevealed) return; 
             offerRevealed = true;
             offerSection.style.display = 'block';
             setTimeout(() => {
